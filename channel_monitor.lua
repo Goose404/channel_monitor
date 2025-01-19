@@ -155,6 +155,22 @@ function channel_monitor:ADDON_LOADED()
 	main_frame:SetScript('OnDragStop', function()
 		self:save_frame()
 	end)
+	
+	local rb = CreateFrame("Button", nil, main_frame)
+	rb:SetPoint("BOTTOMRIGHT", 0, 0)
+	rb:SetHeight(15)
+	rb:SetWidth(15)
+	rb:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+	rb:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+	rb:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+
+	rb:SetScript("OnMouseDown", function()
+	    main_frame:StartSizing("BOTTOMRIGHT")
+	end)
+
+	rb:SetScript("OnMouseUp", function()
+    	main_frame:StopMovingOrSizing()  
+	end)
 
     local editbox = CreateFrame('EditBox', nil, main_frame)
     main_frame.editbox = editbox
